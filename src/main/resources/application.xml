@@ -7,7 +7,11 @@
         <constructor-arg type="java.lang.String" value="PostgresDriver"/>
     </bean>
 
-    <bean id="pool1" name="p1,p2,p3" class="shadow.dev.spring.datatabase.pool.ConnectionPool" scope="prototype">
+    <bean id="pool1" name="p1,p2,p3" class="shadow.dev.spring.datatabase.pool.ConnectionPool"
+          init-method="init"
+          destroy-method="destroy"
+          scope="singleton">
+
         <!--        <constructor-arg index="0" type="java.lang.String" value="postgres"/>-->
         <constructor-arg name="username" type="java.lang.String" value="postgres"/>
         <!--        <constructor-arg index="1" type="java.lang.Integer" value="10"/>-->
