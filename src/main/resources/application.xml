@@ -12,6 +12,13 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
     <!--    </bean>-->
 
     <!--    ${}-->
+
+
+
+
+    <bean class="shadow.dev.spring.bfpp.LogBeanFactoryPostProcessor"/>
+    <bean class="shadow.dev.spring.bfpp.VerifyPropertBeanFactoryPostprocessor"/>
+
     <bean id="driver" class="java.lang.String">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
