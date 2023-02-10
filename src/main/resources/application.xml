@@ -8,11 +8,11 @@
     </bean>
 
     <bean id="pool1" name="p1,p2,p3" class="shadow.dev.spring.datatabase.pool.ConnectionPool">
-<!--        <constructor-arg index="0" type="java.lang.String" value="postgres"/>-->
+        <!--        <constructor-arg index="0" type="java.lang.String" value="postgres"/>-->
         <constructor-arg name="username" type="java.lang.String" value="postgres"/>
-<!--        <constructor-arg index="1" type="java.lang.Integer" value="10"/>-->
+        <!--        <constructor-arg index="1" type="java.lang.Integer" value="10"/>-->
         <constructor-arg name="poolSize" type="java.lang.Integer" value="10"/>
-<!--        <constructor-arg index="2" type="java.util.List">-->
+        <!--        <constructor-arg index="2" type="java.util.List">-->
         <constructor-arg name="args" type="java.util.List">
             <list>
                 <value>--arg1=value1</value>
@@ -20,20 +20,23 @@
                 <ref bean="driver"/>
             </list>
         </constructor-arg>
-<!--        <constructor-arg index="3">-->
+        <!--        <constructor-arg index="3">-->
         <constructor-arg name="properties">
+            <null/>
+        </constructor-arg>
+        <property name="properties">
             <map>
                 <entry key="url" value="postgresurl"/>
                 <entry key="password" value="123"/>
                 <entry key="driver" value-ref="driver"/>
             </map>
-        </constructor-arg>
+        </property>
     </bean>
 
     <bean id="companyRepository" class="shadow.dev.spring.datatabase.repository.CompanyRepository" factory-method="of">
         <constructor-arg ref="pool1"/>
     </bean>
-<!--    <bean id="pool2" name="p4" class="shadow.dev.spring.datatabase.pool.ConnectionPool"/>-->
+    <!--    <bean id="pool2" name="p4" class="shadow.dev.spring.datatabase.pool.ConnectionPool"/>-->
 
 
 </beans>
