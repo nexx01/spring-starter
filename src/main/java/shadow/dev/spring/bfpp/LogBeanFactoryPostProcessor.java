@@ -10,6 +10,7 @@ public class LogBeanFactoryPostProcessor implements BeanFactoryPostProcessor, Pr
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
+
         System.out.println();
     }
 

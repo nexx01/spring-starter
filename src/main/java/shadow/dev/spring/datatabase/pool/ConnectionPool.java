@@ -3,6 +3,8 @@ package shadow.dev.spring.datatabase.pool;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +29,7 @@ public class ConnectionPool implements InitializingBean, DisposableBean {
         this.properties = properties;
     }
 
+    @PostConstruct
     private void init() {
         System.out.println("Init connection pool");
     }
@@ -36,6 +39,7 @@ public class ConnectionPool implements InitializingBean, DisposableBean {
         System.out.println("Properties set");
     }
 
+    @PreDestroy
     public void destroy() {
         System.out.println("Clean connection pool");
     }
