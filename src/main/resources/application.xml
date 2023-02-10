@@ -17,6 +17,7 @@
             <list>
                 <value>--arg1=value1</value>
                 <value>--arg1=value2</value>
+                <ref bean="driver"/>
             </list>
         </constructor-arg>
 <!--        <constructor-arg index="3">-->
@@ -24,8 +25,13 @@
             <map>
                 <entry key="url" value="postgresurl"/>
                 <entry key="password" value="123"/>
+                <entry key="driver" value-ref="driver"/>
             </map>
         </constructor-arg>
+    </bean>
+
+    <bean id="companyRepository" class="shadow.dev.spring.datatabase.repository.CompanyRepository" factory-method="of">
+        <constructor-arg ref="pool1"/>
     </bean>
 <!--    <bean id="pool2" name="p4" class="shadow.dev.spring.datatabase.pool.ConnectionPool"/>-->
 
