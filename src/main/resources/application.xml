@@ -14,6 +14,9 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <!--    ${}-->
 
+    <bean class="shadow.dev.spring.bpp.InjectBeanPostProcessor"/>
+    <bean class="shadow.dev.spring.bpp.TransactionBeanPostProcessor"/>
+    <bean class="shadow.dev.spring.bpp.AuditingBeanPostProcessor"/>
 
 
 
@@ -59,8 +62,7 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
         </property>
     </bean>
 
-    <bean id="companyRepository" class="shadow.dev.spring.datatabase.repository.CompanyRepository" factory-method="of">
-        <constructor-arg ref="pool1"/>
+    <bean id="companyRepository" class="shadow.dev.spring.datatabase.repository.CompanyRepository">
     </bean>
     <!--    <bean id="pool2" name="p4" class="shadow.dev.spring.datatabase.pool.ConnectionPool"/>-->
 
