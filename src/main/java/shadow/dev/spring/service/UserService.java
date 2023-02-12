@@ -1,22 +1,19 @@
 package shadow.dev.spring.service;
 
+import org.springframework.stereotype.Service;
+import shadow.dev.spring.datatabase.entity.Company;
 import shadow.dev.spring.datatabase.repository.CompanyRepository;
+import shadow.dev.spring.datatabase.repository.CrudRepository;
 import shadow.dev.spring.datatabase.repository.UserRepository;
 
+@Service
 public class UserService {
 
     private final UserRepository userRepository;
-    private final CompanyRepository companyRepository;
+    private final CrudRepository<Integer, Company> companyRepository;
 
-    private CompanyService companyService;
-
-    public void setCompanyService(CompanyService companyService) {
-        this.companyService = companyService;
-    }
-
-    public UserService(UserRepository userRepository, CompanyRepository companyRepository) {
+    public UserService(UserRepository userRepository, CrudRepository<Integer, Company> companyRepository) {
         this.userRepository = userRepository;
         this.companyRepository = companyRepository;
     }
-
 }

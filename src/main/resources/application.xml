@@ -6,65 +6,40 @@
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-    <context:annotation-config></context:annotation-config>
+    <context:component-scan base-package="shadow.dev.spring"/>
     <context:property-placeholder location="classpath:application.properties"/>
-    <!--    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">-->
-    <!--        <property name="locations" value="classpath:application.properties"/>-->
-    <!--    </bean>-->
-
-    <!--    ${}-->
-
-    <bean class="shadow.dev.spring.bpp.InjectBeanPostProcessor"/>
-    <bean class="shadow.dev.spring.bpp.TransactionBeanPostProcessor"/>
-    <bean class="shadow.dev.spring.bpp.AuditingBeanPostProcessor"/>
-
-
-
-    <bean class="shadow.dev.spring.bfpp.LogBeanFactoryPostProcessor"/>
-    <bean class="shadow.dev.spring.bfpp.VerifyPropertBeanFactoryPostprocessor"/>
-
-<!--    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>-->
 
     <bean id="driver" class="java.lang.String">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
 
-    <bean id="pool2"  class="shadow.dev.spring.datatabase.pool.ConnectionPool"/>
-    <bean id="pool1" name="p1,p2,p3" class="shadow.dev.spring.datatabase.pool.ConnectionPool">
+<!--    <constructor-arg name="args" type="java.util.List">-->
+<!--        <list>-->
+<!--            <value>&#45;&#45;arg1=value1</value>-->
+<!--            <value>&#45;&#45;arg1=value2</value>-->
+<!--            <ref bean="driver"/>-->
+<!--        </list>-->
+<!--    </constructor-arg>-->
+<!--    &lt;!&ndash;        <constructor-arg index="3">&ndash;&gt;-->
+<!--    <constructor-arg name="properties">-->
+<!--        <null/>-->
+<!--    </constructor-arg>-->
+<!--    &lt;!&ndash;        #{} it is SPELL&ndash;&gt;-->
+<!--    <property name="properties">-->
+<!--        <map>-->
+<!--            <entry key="url" value="postgresurl"/>-->
+<!--            <entry key="password" value="123"/>-->
+<!--            <entry key="driver" value="#{driver.substring(3)}"/>-->
+<!--            <entry key="test" value="#{driver.length()>10}"/>-->
+<!--            <entry key="test1" value="#{driver.length()>T(Math).random()*10}"/>-->
+<!--            <entry key="hosts" value="#{'${db.hosts}'.split(',')}"/>-->
+<!--            <entry key="currentUser" value="#{systemProperties['user.name']"/>-->
+<!--            <entry key="currentUser" value="${user.name}"/>-->
+<!--        </map>-->
+<!--    </property>-->
 
-        <!--        <constructor-arg index="0" type="java.lang.String" value="postgres"/>-->
-        <constructor-arg name="username" type="java.lang.String" value="${db.username}"/>
-        <!--        <constructor-arg index="1" type="java.lang.Integer" value="10"/>-->
-        <constructor-arg name="poolSize" type="java.lang.Integer" value="${db.pool.size}"/>
-        <!--        <constructor-arg index="2" type="java.util.List">-->
-        <constructor-arg name="args" type="java.util.List">
-            <list>
-                <value>--arg1=value1</value>
-                <value>--arg1=value2</value>
-                <ref bean="driver"/>
-            </list>
-        </constructor-arg>
-        <!--        <constructor-arg index="3">-->
-        <constructor-arg name="properties">
-            <null/>
-        </constructor-arg>
-        <!--        #{} it is SPELL-->
-        <property name="properties">
-            <map>
-                <entry key="url" value="postgresurl"/>
-                <entry key="password" value="123"/>
-                <entry key="driver" value="#{driver.substring(3)}"/>
-                <entry key="test" value="#{driver.length()>10}"/>
-                <entry key="test1" value="#{driver.length()>T(Math).random()*10}"/>
-                <entry key="hosts" value="#{'${db.hosts}'.split(',')}"/>
-                <entry key="currentUser" value="#{systemProperties['user.name']"/>
-                <entry key="currentUser" value="${user.name}"/>
-            </map>
-        </property>
-    </bean>
 
-    <bean id="companyRepository" class="shadow.dev.spring.datatabase.repository.CompanyRepository">
-    </bean>
+
     <!--    <bean id="pool2" name="p4" class="shadow.dev.spring.datatabase.pool.ConnectionPool"/>-->
 
 
