@@ -29,6 +29,7 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
         <constructor-arg type="java.lang.String" value="${db.driver}"/>
     </bean>
 
+    <bean id="pool2"  class="shadow.dev.spring.datatabase.pool.ConnectionPool"/>
     <bean id="pool1" name="p1,p2,p3" class="shadow.dev.spring.datatabase.pool.ConnectionPool">
 
         <!--        <constructor-arg index="0" type="java.lang.String" value="postgres"/>-->
