@@ -10,7 +10,8 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
                             annotation-config="true"
                             resource-pattern="**/*.class"
                             scoped-proxy="no"
-                            use-default-filters="false">
+                            use-default-filters="false"
+    >
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
         <context:include-filter type="assignable" expression="shadow.dev.spring.datatabase.repository.CrudRepository"/>
         <context:include-filter type="regex" expression="shadow\..+Repository"/>

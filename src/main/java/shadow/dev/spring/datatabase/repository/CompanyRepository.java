@@ -1,6 +1,8 @@
 package shadow.dev.spring.datatabase.repository;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 import shadow.dev.spring.bpp.Auditing;
 import shadow.dev.spring.bpp.Transaction;
@@ -11,9 +13,12 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
+
 @Auditing
 @Transaction
 @Repository
+@Scope(value = SCOPE_PROTOTYPE)
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
     private Integer poolSize;

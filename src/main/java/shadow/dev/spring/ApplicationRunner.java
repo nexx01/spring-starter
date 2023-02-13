@@ -3,14 +3,9 @@ package shadow.dev.spring;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import shadow.dev.spring.datatabase.pool.ConnectionPool;
-import shadow.dev.spring.datatabase.repository.CompanyRepository;
 import shadow.dev.spring.datatabase.repository.CrudRepository;
-import shadow.dev.spring.datatabase.repository.UserRepository;
-import shadow.dev.spring.ioc.Container;
-import shadow.dev.spring.service.UserService;
 
 import java.io.Serializable;
-import java.lang.invoke.SerializedLambda;
 
 public class ApplicationRunner {
 
