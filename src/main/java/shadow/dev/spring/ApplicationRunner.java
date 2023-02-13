@@ -5,6 +5,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import shadow.dev.spring.config.ApplicationConfiguration;
 import shadow.dev.spring.datatabase.pool.ConnectionPool;
 import shadow.dev.spring.datatabase.repository.CrudRepository;
+import shadow.dev.spring.service.CompanyService;
 
 import java.io.Serializable;
 
@@ -22,8 +23,8 @@ public class ApplicationRunner {
             context.refresh();
             var connectionPool = context.getBean("pool1", ConnectionPool.class);
             System.out.println(connectionPool);
-            var companyRepository = context.getBean("companyRepository", CrudRepository.class);
-            System.out.println(companyRepository.findById(1));
+            var companyService = context.getBean("companyService", CompanyService.class);
+            System.out.println(companyService.findById(1));
         }
     }
 
