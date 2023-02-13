@@ -2,7 +2,6 @@ package shadow.dev.spring;
 
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import shadow.dev.spring.config.ApplicationConfiguration;
 import shadow.dev.spring.datatabase.pool.ConnectionPool;
 import shadow.dev.spring.datatabase.repository.CrudRepository;
