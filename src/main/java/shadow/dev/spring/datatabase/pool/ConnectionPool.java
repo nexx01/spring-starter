@@ -1,5 +1,6 @@
 package shadow.dev.spring.datatabase.pool;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +16,14 @@ import java.util.Map;
 
 @Component("pool1")
 //public class ConnectionPool {
+@RequiredArgsConstructor
 public class ConnectionPool {
 
+    @Value("${db.username}")
     private final String username;
-    private final Integer poolSize;
 
-    public ConnectionPool(@Value("${db.username}") String username, @Value("${db.pool.size}") Integer poolSize) {
-        this.username = username;
-        this.poolSize = poolSize;
-    }
+    @Value("${db.pool.size}")
+    private final Integer poolSize;
 
 
     @PostConstruct

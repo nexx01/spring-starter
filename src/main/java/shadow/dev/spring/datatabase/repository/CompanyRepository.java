@@ -1,5 +1,6 @@
 package shadow.dev.spring.datatabase.repository;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -19,19 +20,13 @@ import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROT
 @Transaction
 @Repository
 @Scope(value = SCOPE_PROTOTYPE)
+@RequiredArgsConstructor
 public class CompanyRepository implements CrudRepository<Integer, Company> {
 
-    private Integer poolSize;
-    private ConnectionPool pool1;
-    private List<ConnectionPool> connectionPools;
-
-    public CompanyRepository(@Value("${db.pool.size}") Integer poolSize,
-                             ConnectionPool pool1,
-                             List<ConnectionPool> connectionPools) {
-        this.poolSize = poolSize;
-        this.pool1 = pool1;
-        this.connectionPools = connectionPools;
-    }
+    @Value("${db.pool.size}")
+    private final Integer poolSize;
+    private final ConnectionPool pool1;
+    private final List<ConnectionPool> connectionPools;
 
     @PostConstruct
     private void init() {

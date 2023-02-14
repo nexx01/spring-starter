@@ -11,9 +11,7 @@ import shadow.dev.spring.datatabase.repository.UserRepository;
 import shadow.dev.web.ConfigWebConfiguration;
 
 @Configuration(proxyBeanMethods = true)
-@PropertySource("classpath:application.properties")
-@ComponentScan(basePackages = "shadow.dev.spring",
-        useDefaultFilters = false,
+@ComponentScan(useDefaultFilters = false,
         includeFilters = {
                 @Filter(type = FilterType.ANNOTATION, value = Component.class),
                 @Filter(type = FilterType.ASSIGNABLE_TYPE, value = CrudRepository.class),

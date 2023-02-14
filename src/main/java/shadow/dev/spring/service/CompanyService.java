@@ -1,5 +1,6 @@
 package shadow.dev.spring.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
@@ -12,17 +13,12 @@ import shadow.dev.spring.listeners.entity.EntityEvent;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CompanyService {
 
     private  final  UserService userService;
     private final CrudRepository<Integer, Company> companyRepository;
     private final ApplicationEventPublisher applicationEventPublisher;
-
-    public CompanyService(UserService userService, CrudRepository<Integer, Company> companyRepository, ApplicationEventPublisher applicationEventPublisher) {
-        this.userService = userService;
-        this.companyRepository = companyRepository;
-        this.applicationEventPublisher = applicationEventPublisher;
-    }
 
     public Optional<CompanyReadDto> findById(Integer id) {
         return companyRepository.findById(id)
