@@ -1,6 +1,7 @@
 package shadow.dev.spring.service;
 
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Service;
 import shadow.dev.spring.datatabase.entity.Company;
 import shadow.dev.spring.datatabase.repository.CrudRepository;
