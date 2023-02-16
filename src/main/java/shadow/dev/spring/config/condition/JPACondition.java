@@ -1,4 +1,4 @@
-package shadow.dev.spring.condition;
+package shadow.dev.spring.config.condition;
 
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
