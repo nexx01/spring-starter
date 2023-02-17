@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: "Cloud Ready Reactive Application"
+management:
+  info:
+    java:
+      enabled: true
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure.include: "*"
+  endpoint:
+    health:
+      show-details: "always"
+      cache:
+        time-to-live: 10s
+# Information about the application
+info:
+  name: "Reactive Spring App"
+  mode: "testing"
+  authors: "oleg & igor"
+  service-version: "2.0"
+  features:
+    feature-a: "enabled"
+    feature-b: "disabled"
+
+
+  # To disable Info endpoint
+  #management.endpoint.info.enabled: false
+server:
+  port: ${SERVER.PORT:8090}

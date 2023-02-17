@@ -5,6 +5,12 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
 import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.ClientRequest;
+import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.web.reactive.function.client.ExchangeFunction;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.support.ClientResponseWrapper;
+import reactor.core.publisher.Mono;
 import shadow.dev.spring.datatabase.pool.ConnectionPool;
 import shadow.dev.spring.datatabase.repository.CrudRepository;
 import shadow.dev.spring.datatabase.repository.UserRepository;
@@ -44,5 +50,21 @@ public class ApplicationConfiguration {
         ConnectionPool connectionPool1 = pool3();
         ConnectionPool connectionPool2 = pool3();
         return new UserRepository(pool3());
+    }
+
+    @Bean
+    public WebClient webClientFromConfiguration() {
+      return   WebClient.create("http://localhost:8090");
+    }
+
+    @Bean
+    public WebClient.Builder webClientFromBuilder() {
+        return WebClient.builder()
+                .baseUrl("http://localhost:8090")
+                .defaultHeaders(header ->
+                        header.setBasicAuth("userName", "password")
+                )
+                .defaultCookie("DEFAULT_COOKIE", "COOKIE_VALUE");
+//                .build();
     }
 }
