@@ -1,6 +1,7 @@
 package shadow.dev.spring.datatabase.pool;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.util.Map;
 @Component("pool1")
 //public class ConnectionPool {
 @RequiredArgsConstructor
+@Slf4j
 public class ConnectionPool {
 
     @Value("${db.username}")
@@ -28,12 +30,12 @@ public class ConnectionPool {
 
     @PostConstruct
     private void init() {
-        System.out.println("Init connection pool");
+        log.warn("Init connection pool");
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println("Clean connection pool");
+        log.info("Clean connection pool");
     }
 
 }

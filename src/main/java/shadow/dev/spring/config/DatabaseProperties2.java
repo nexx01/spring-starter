@@ -18,9 +18,7 @@ public record DatabaseProperties2(
         String hosts,
         DatabaseProperties2.PoolProperties2 pool,
         List<DatabaseProperties2.PoolProperties2> pools,
-
         Map<String, Object> properties) {
-
 
     public static record PoolProperties2(
             Integer size,

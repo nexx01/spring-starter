@@ -21,3 +21,11 @@ db:
       timeout: 3
 
 #spring.profiles.active: qa
+
+logging:
+  level:
+    root: warn
+    shadow.dev.spring.datatabase.pool.ConnectionPool: info
+  file:
+    name: shadow.log
+    path: /
