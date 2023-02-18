@@ -12,9 +12,36 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    reactorVersion = '3.2.0.RELEASE'
+    springCloudVersion = '2.1.6.RELEASE'
+    springBootAdminVersion = '2.7.3'
+}
+
 dependencies {
     implementation('org.springframework.boot:spring-boot-starter')
     implementation 'org.postgresql:postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.7.2'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator:2.7.2'
+
+// Metrics support
+    implementation('io.micrometer:micrometer-registry-prometheus')
+    implementation('org.projectlombok:lombok:1.18.2')
+    // To start embedded MongoDB
+    implementation('de.flapdoodle.embed:de.flapdoodle.embed.mongo')
+
+    // To communicate with NTP servers
+    implementation('commons-net:commons-net:3.6')
+    // Distributed tracing
+//    implementation("org.springframework.cloud:spring-cloud-starter-sleuth:${springCloudVersion}")
+//    implementation("org.springframework.cloud:spring-cloud-starter-zipkin:${springCloudVersion}")
+    // Pretty UI with Spring Boot Admin
+    implementation("de.codecentric:spring-boot-admin-starter-server:${springBootAdminVersion}")
+    implementation("de.codecentric:spring-boot-admin-starter-client:${springBootAdminVersion}")
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap
+//    implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:3.0.4'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
