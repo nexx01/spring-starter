@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS company
 (
-    id SERIAL PRIMARY KEY ,
+    id BIGINT PRIMARY KEY ,
     name VARCHAR(64) NOT NULL UNIQUE
     );
 
