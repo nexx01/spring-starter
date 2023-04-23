@@ -10,9 +10,10 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.mock.http.client.MockClientHttpRequest;
+import org.springframework.data.repository.CrudRepository;
 import shadow.dev.spring.datatabase.entity.Company;
-import shadow.dev.spring.datatabase.repository.CrudRepository;
+import shadow.dev.spring.datatabase.entity.Role;
+import shadow.dev.spring.datatabase.repository.CompanyRepository;
 import shadow.dev.spring.dto.dto.CompanyReadDto;
 import shadow.dev.spring.listeners.entity.EntityEvent;
 
@@ -31,9 +32,10 @@ class CompanyServiceTest {
     @Mock
     private UserService userService;
     @Mock
-    private CrudRepository<Integer, Company> companyRepository;
+    private CompanyRepository companyRepository;
     @Mock
     private ApplicationEventPublisher applicationEventPublisher;
+
 
     @Test
     void findById() {

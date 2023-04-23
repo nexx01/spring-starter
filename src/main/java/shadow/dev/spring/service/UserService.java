@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import shadow.dev.spring.datatabase.entity.Company;
 import shadow.dev.spring.datatabase.repository.CompanyRepository;
-import shadow.dev.spring.datatabase.repository.CrudRepository;
 import shadow.dev.spring.datatabase.repository.UserRepository;
 
 
@@ -13,6 +12,6 @@ import shadow.dev.spring.datatabase.repository.UserRepository;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final CrudRepository<Integer, Company> companyRepository;
+    private final CompanyRepository companyRepository;
 
 }

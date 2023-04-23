@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @ActiveProfiles("test")
 @SpringBootTest(classes = TestApplicationRunner.class)
-//@Transactional
+@Transactional
 
 public @interface IT {
 

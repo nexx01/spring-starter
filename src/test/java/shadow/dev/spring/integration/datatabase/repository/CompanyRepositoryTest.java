@@ -9,11 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 import shadow.dev.spring.annotation.IT;
 import shadow.dev.spring.datatabase.entity.Company;
+import shadow.dev.spring.datatabase.repository.CompanyRepository;
 
 import javax.persistence.EntityManager;
 
 //import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,9 +24,28 @@ import static org.junit.jupiter.api.Assertions.*;
 @RequiredArgsConstructor
 //@Commit
 class CompanyRepositoryTest {
+    private static final Integer APPLE_ID = 4;
 
     private final EntityManager entityManager;
     private final TransactionTemplate transactionTemplate;
+    private final CompanyRepository companyRepository;
+
+    @Test
+    void checkFindByQueries() {
+        companyRepository.findByName("google");
+        companyRepository.findAllByNameContainingIgnoreCase("a");
+
+    }
+
+    @Test
+    void delete() {
+        var maybeCompany = companyRepository.findById(APPLE_ID);
+        assertTrue(maybeCompany.isPresent());
+        maybeCompany.ifPresent(companyRepository::delete);
+        entityManager.flush();
+        assertTrue(companyRepository.findById(APPLE_ID).isEmpty());
+    }
+
     @Test
     void findById() {
         transactionTemplate.executeWithoutResult(tx -> {

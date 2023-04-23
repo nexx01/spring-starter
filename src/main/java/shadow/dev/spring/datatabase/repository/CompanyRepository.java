@@ -1,46 +1,31 @@
 package shadow.dev.spring.datatabase.repository;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
-import shadow.dev.spring.bpp.Auditing;
-import shadow.dev.spring.bpp.Transaction;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.util.Streamable;
 import shadow.dev.spring.datatabase.entity.Company;
-import shadow.dev.spring.datatabase.pool.ConnectionPool;
 
-import javax.annotation.PostConstruct;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
-import static org.springframework.beans.factory.config.BeanDefinition.SCOPE_PROTOTYPE;
+public interface CompanyRepository extends JpaRepository<Company,Integer > {
 
-@Auditing
-@Transaction
-@Repository
-@Scope(value = SCOPE_PROTOTYPE)
-@RequiredArgsConstructor
-public class CompanyRepository implements CrudRepository<Integer, Company> {
+    //Optional,Future,Entity
 
-    @Value("${db.pool.size}")
-    private final Integer poolSize;
-    private final ConnectionPool pool1;
-    private final List<ConnectionPool> connectionPools;
 
-    @PostConstruct
-    private void init() {
-        System.out.println("init company repository...");
-    }
+//    @Query(name = "Company.findByName")
 
-    @Override
-    public Optional<Company> findById(Integer id) {
-        System.out.println("findById method...");
-        return Optional.of(new Company(id,null, Collections.emptyMap()));
-    }
+    @Query("select c from Company c " +
+            "join fetch c.locales cl " +
+            "where c.name = :name2")
+    Optional<Company> findByName(@Param("name2") String name);
 
-    @Override
-    public void delete(Company entity) {
-        System.out.println("delete method...");
-    }
+    //Collection,Stream(batch,close)
+    List<Company> findAllByNameContainingIgnoreCase(String fragment);
+   // Streamable<Company> findAll();
+
+//    Stream<Company> findAllByCustomQueryAndStream();
 }

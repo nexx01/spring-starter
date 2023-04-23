@@ -2,6 +2,13 @@
 db:
   username: test
   password: test
+
+spring:
+  jpa:
+    properties.hibernate:
+      format_sql: true
+      hbm2ddl:
+        auto: update
 #  driver: PostgresDriver
 #  url: postgres:5432
 #  hosts: localhost,127.0.0.1

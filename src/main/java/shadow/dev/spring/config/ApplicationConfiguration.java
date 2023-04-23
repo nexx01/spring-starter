@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.*;
 import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 import shadow.dev.spring.datatabase.pool.ConnectionPool;
-import shadow.dev.spring.datatabase.repository.CrudRepository;
+import shadow.dev.spring.datatabase.repository.CompanyRepository;
 import shadow.dev.spring.datatabase.repository.UserRepository;
 import shadow.dev.web.ConfigWebConfiguration;
 
@@ -14,11 +16,12 @@ import shadow.dev.web.ConfigWebConfiguration;
 @ComponentScan(useDefaultFilters = false,
         includeFilters = {
                 @Filter(type = FilterType.ANNOTATION, value = Component.class),
-                @Filter(type = FilterType.ASSIGNABLE_TYPE, value = CrudRepository.class),
+                @Filter(type = FilterType.ASSIGNABLE_TYPE, value = CompanyRepository.class),
                 @Filter(type = FilterType.REGEX, pattern = "com\\..+Repository")
         })
 //@ImportResource("classpath:application.xml")
 @Import(ConfigWebConfiguration.class)
+//@EnableJpaRepositories("com\\..+Repository")
 public class ApplicationConfiguration {
     @Bean
     @Scope(BeanDefinition.SCOPE_SINGLETON)
@@ -33,16 +36,4 @@ public class ApplicationConfiguration {
         return new ConnectionPool("test-pool", 20);
     }
 
-    @Bean
-    @Profile("prod|web")
-    public UserRepository userRepository2(ConnectionPool pool2) {
-        return new UserRepository(pool2);
-    }
-
-    @Bean
-    public UserRepository userRepository3() {
-        ConnectionPool connectionPool1 = pool3();
-        ConnectionPool connectionPool2 = pool3();
-        return new UserRepository(pool3());
-    }
 }
