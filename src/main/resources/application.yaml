@@ -34,6 +34,7 @@ spring:
   jpa:
     properties:
       hibernate:
+        batch_size: 50
         show_sql: true
         format_sql: true
         hbm2ddl:
@@ -43,6 +44,7 @@ logging:
   level:
     root: INFO
     shadow.dev.spring.datatabase.pool.ConnectionPool: info
+    org.springframework.jdbc.core: trace
   file:
     name: shadow.log
     path: /

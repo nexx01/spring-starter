@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.jdbc.Sql;
 import shadow.dev.spring.annotation.IT;
 import shadow.dev.spring.datatabase.entity.Role;
 import shadow.dev.spring.datatabase.entity.User;
@@ -25,9 +26,28 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 @IT
 @RequiredArgsConstructor
+@Sql({
+        "classpath:sql/data.sql"
+})
 class UserRepositoryTest {
 
     private final UserRepository userRepository;
+
+
+    @Test
+    void checkBatch() {
+        var all = userRepository.findAll();
+        userRepository.updateCompanyAndRole(all);
+        System.out.println();
+    }
+
+    @Test
+    void checkJdbcTemplate() {
+
+        var allByCompanyIdAndRole = userRepository.findAllByCompanyIdAndRole(1, Role.USER);
+        assertThat(allByCompanyIdAndRole).hasSize(1);
+        System.out.println();
+    }
 
     @Test
     @Commit

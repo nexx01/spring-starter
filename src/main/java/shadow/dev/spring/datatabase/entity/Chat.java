@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-@Table(name="company")
+@Table(name="chat")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
