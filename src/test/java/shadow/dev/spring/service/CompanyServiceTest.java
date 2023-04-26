@@ -23,7 +23,7 @@ import java.util.Optional;
 @ExtendWith(MockitoExtension.class)
 class CompanyServiceTest {
 
-    public static final Integer COMPANY_ID = 1;
+    public static final Long COMPANY_ID = 1L;
 
     @Spy
     @InjectMocks

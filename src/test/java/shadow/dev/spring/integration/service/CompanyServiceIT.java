@@ -42,7 +42,7 @@ public class CompanyServiceIT {
 
     final DatabaseProperties2 databaseProperties2;
 
-    public static final Integer COMPANY_ID = 1;
+    public static final Long COMPANY_ID = 1L;
 
 
     @Test

@@ -22,7 +22,7 @@ public class CompanyService {
     private final ApplicationEventPublisher applicationEventPublisher;
 
     @Transactional
-    public Optional<CompanyReadDto> findById(Integer id) {
+    public Optional<CompanyReadDto> findById(Long id) {
         return companyRepository.findById(id)
                 .map(entity -> {
                     applicationEventPublisher.publishEvent(new EntityEvent(entity,AccessType.READ));

@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map;
 
 @Entity
-@Table(name="company")
+//@Table(name="company")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -19,11 +22,25 @@ import java.util.Map;
         name="Company.findByName",
         query="select c from Company c where lower( c.name) = lower( :name)"
 )
-public class Company implements BaseEntity<Integer>{
+public class Company implements BaseEntity<Long>{
+//    @GeneratedValue(strategy = GenerationType.AUTO)
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+
+
+//
+//    @GeneratedValue(generator = "sequence-generator")
+//    @GenericGenerator(
+//            name = "sequence-generator",
+//            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+//            parameters = {
+//                    @Parameter(name = "sequence_name", value = "company_id_seq"),
+//                    @Parameter(name = "initial_value", value = "1"),
+//                    @Parameter(name = "increment_size", value = "1")
+//            }
+//    )
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(unique = true,nullable = false)
     private String name;

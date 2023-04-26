@@ -38,7 +38,7 @@ spring:
         show_sql: true
         format_sql: true
         hbm2ddl:
-          auto: validate
+          auto: update
 
 logging:
   level:

@@ -14,6 +14,7 @@ import shadow.dev.spring.datatabase.entity.User;
 import shadow.dev.spring.datatabase.repository.UserRepository;
 import shadow.dev.spring.dto.dto.PersonalInfo;
 import shadow.dev.spring.dto.dto.UserFilter;
+import shadow.dev.spring.integration.IntegrationTestBase;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -24,12 +25,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 import static org.springframework.test.util.AssertionErrors.assertTrue;
 
-@IT
+//@IT
 @RequiredArgsConstructor
-@Sql({
-        "classpath:sql/data.sql"
-})
-class UserRepositoryTest {
+class UserRepositoryTest  extends IntegrationTestBase {
 
     private final UserRepository userRepository;
 
@@ -50,7 +48,7 @@ class UserRepositoryTest {
     }
 
     @Test
-    @Commit
+//    @Commit
     void checkAuditing() {
         var user = userRepository.findById(1L).get();
         user.setBirthDate(user.getBirthDate().minusYears(1));

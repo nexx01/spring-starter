@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public interface CompanyRepository extends JpaRepository<Company,Integer > {
+public interface CompanyRepository extends JpaRepository<Company,Long > {
 
     //Optional,Future,Entity
 

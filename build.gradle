@@ -9,6 +9,8 @@ plugins {
    // id 'hello' version '1.0'
 }
 
+apply from: 'version.gradle'
+
 group 'org.example'
 version '1.0-SNAPSHOT'
 
@@ -30,15 +32,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
     implementation 'org.springframework.data:spring-data-envers:2.7.3'
-    implementation 'com.querydsl:querydsl-jpa:5.0.0'
-    annotationProcessor 'com.querydsl:querydsl-apt:5.0.0'
+    implementation "com.querydsl:querydsl-jpa:${versions.querydsl}"
+    annotationProcessor "com.querydsl:querydsl-apt:${versions.querydsl}"
 
-    testImplementation 'com.h2database:h2'
+//    testImplementation 'com.h2database:h2'
+    testImplementation "org.testcontainers:postgresql:${versions.testcontainers}"
+
 }
 
 querydsl {
     jpa=true
-    library = 'com.querydsl:querydsl-apt:5.0.0'
+    library = 'com.querydsl:querydsl-apt:'
     querydslSourcesDir="$buildDir/generated/sources/annotationProcessor/java/main"
 }
 

@@ -10,6 +10,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import shadow.dev.spring.annotation.IT;
 import shadow.dev.spring.datatabase.entity.Company;
 import shadow.dev.spring.datatabase.repository.CompanyRepository;
+import shadow.dev.spring.integration.IntegrationTestBase;
 
 import javax.persistence.EntityManager;
 
@@ -20,11 +21,11 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@IT
+//@IT
 @RequiredArgsConstructor
 //@Commit
-class CompanyRepositoryTest {
-    private static final Integer APPLE_ID = 4;
+class CompanyRepositoryTest  extends IntegrationTestBase {
+    private static final Long APPLE_ID = 4L;
 
     private final EntityManager entityManager;
     private final TransactionTemplate transactionTemplate;
@@ -34,7 +35,6 @@ class CompanyRepositoryTest {
     void checkFindByQueries() {
         companyRepository.findByName("google");
         companyRepository.findAllByNameContainingIgnoreCase("a");
-
     }
 
     @Test
