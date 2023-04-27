@@ -8,6 +8,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 import shadow.dev.spring.annotation.IT;
 import shadow.dev.spring.datatabase.entity.Role;
 import shadow.dev.spring.datatabase.entity.User;
@@ -27,6 +28,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 //@IT
 @RequiredArgsConstructor
+@Transactional
 class UserRepositoryTest  extends IntegrationTestBase {
 
     private final UserRepository userRepository;

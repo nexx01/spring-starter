@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Map;
 
 @Entity
-//@Table(name="company")
+@Table(name="company")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
