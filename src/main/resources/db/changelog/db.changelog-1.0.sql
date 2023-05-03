@@ -21,7 +21,7 @@ ALTER TABLE ONLY company ALTER COLUMN id SET DEFAULT nextval('company_id_seq'::r
 --changeSet aashutov:2
 CREATE TABLE IF NOT EXISTS company_locales
 (
-    company_id BIGINT REFERENCES company (id),
+    company_id BIGINT REFERENCES company (id) ON DELETE CASCADE ,
     lang VARCHAR(2),
     description VARCHAR(255) NOT NULL ,
     PRIMARY KEY (company_id, lang)
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS payment
 (
     id BIGSERIAL PRIMARY KEY ,
     amount INT NOT NULL ,
-    receiver_id BIGINT NOT NULL REFERENCES users (id)
+    receiver_id BIGINT NOT NULL REFERENCES users (id) ON DELETE CASCADE
 );
 --changeSet aashutov:5
 CREATE TABLE IF NOT EXISTS chat
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS chat
 CREATE TABLE IF NOT EXISTS users_chat
 (
     id BIGSERIAL PRIMARY KEY ,
-    user_id BIGINT NOT NULL REFERENCES users (id),
-    chat_id BIGINT NOT NULL REFERENCES chat (id),
+    user_id BIGINT NOT NULL REFERENCES users (id) ON DELETE CASCADE ,
+    chat_id BIGINT NOT NULL REFERENCES chat (id) ON DELETE CASCADE ,
     UNIQUE (user_id, chat_id)
 );

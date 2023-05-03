@@ -23,6 +23,13 @@ db:
 #spring.profiles.active: qa
 
 spring:
+  mvc:
+    format:
+      date: iso
+      date-time: iso-offset
+    view:
+      prefix: /jsp/
+      suffix: .jsp
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -39,12 +46,19 @@ spring:
         format_sql: true
         hbm2ddl:
           auto: none
+    open-in-view: false
 
 logging:
   level:
     root: INFO
     shadow.dev.spring.datatabase.pool.ConnectionPool: info
     org.springframework.jdbc.core: trace
+    org.springframework.web: trace
   file:
     name: shadow.log
     path: /
+server:
+  port: 8081
+
+
+

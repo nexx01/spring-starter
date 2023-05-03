@@ -31,7 +31,9 @@ dependencies {
     implementation 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.7.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.7.3'
     implementation 'org.springframework.data:spring-data-envers:2.7.3'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:11.0.0-M4'
     implementation "com.querydsl:querydsl-jpa:${versions.querydsl}"
     implementation 'org.liquibase:liquibase-core:4.20.0'
     annotationProcessor "com.querydsl:querydsl-apt:${versions.querydsl}"
