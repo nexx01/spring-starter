@@ -1,11 +1,14 @@
 package shadow.dev.spring.http.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -16,13 +19,27 @@ import shadow.dev.spring.dto.dto.UserFilter;
 import shadow.dev.spring.dto.dto.UserReadDto;
 import shadow.dev.spring.service.CompanyService;
 import shadow.dev.spring.service.UserService;
+import shadow.dev.spring.validation.group.CreateAction;
+import shadow.dev.spring.validation.group.UpdateAction;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.validation.groups.Default;
 
 @Controller
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
     private final UserService userService;
     private final CompanyService  companyService;
+
+//    @ExceptionHandler({Exception.class})
+//    public String handleExceptions(Exception exception,
+//                                   HttpServletRequest request){
+//      log.error("Failed to return response",exception);
+//        return "error/error500";
+//    }
 
     @GetMapping
     public String findAll(Model model, UserFilter filter, Pageable pageable) {
@@ -50,13 +67,15 @@ public class UserController {
 
     @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)
-    public String create(@ModelAttribute UserCreateEditDto user, RedirectAttributes redirectAttributes) {
-//        if(true){
-//            redirectAttributes.addAttribute("userName", user.getUserName());
-//            redirectAttributes.addAttribute("firstName", user.getFirstName());
-//            redirectAttributes.addFlashAttribute("user", user);
-//            return "redirect:/users/registration";
-//        }
+    public String create(@ModelAttribute@Validated({Default.class, CreateAction.class}) UserCreateEditDto user,
+                         BindingResult bindingResult,
+                         RedirectAttributes redirectAttributes) {
+
+        if(bindingResult.hasErrors()){
+            redirectAttributes.addFlashAttribute("user", user);
+            redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
+            return "redirect:/users/registration";
+        }
         return "redirect:/users/" + userService.create(user).getId();
     }
 
@@ -70,7 +89,7 @@ public class UserController {
 
     //    @PutMapping("/{id}")
     @PostMapping("/{id}/update")
-    public String update(@PathVariable("id") Long id, @ModelAttribute UserCreateEditDto user) {
+    public String update(@PathVariable("id") Long id, @ModelAttribute @Validated({Default.class, UpdateAction.class}) UserCreateEditDto user) {
 
         return userService.update(id, user)
                 .map(it -> "redirect:/users/{id}")
