@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -34,12 +37,20 @@ public class UserController {
     private final UserService userService;
     private final CompanyService  companyService;
 
-//    @ExceptionHandler({Exception.class})
+    //    @ExceptionHandler({Exception.class})
 //    public String handleExceptions(Exception exception,
 //                                   HttpServletRequest request){
 //      log.error("Failed to return response",exception);
 //        return "error/error500";
 //    }
+//    @GetMapping(value = "/{id}/avatar",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+//    public byte[] findAvatar(@PathVariable("id") Long id) {
+//        return userService.findAvatar(id)
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+//    }
+
+
+
 
     @GetMapping
     public String findAll(Model model, UserFilter filter, Pageable pageable) {
@@ -96,8 +107,9 @@ public class UserController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-//    @DeleteMapping("/{id}")
-    @PostMapping("/{id}/delete")
+    @DeleteMapping("/{id}")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    @PostMapping("/{id}/delete")
     public String delete(@PathVariable("id") Long id) {
         if (!userService.delete(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);

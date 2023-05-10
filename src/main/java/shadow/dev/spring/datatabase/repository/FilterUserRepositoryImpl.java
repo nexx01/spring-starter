@@ -26,9 +26,9 @@ public class FilterUserRepositoryImpl implements FilterUserRepository{
                    firstname,
                    lastname,
                    birth_date
-                FROM users   
+                FROM users
                 WHERE company_id = ?
-                AND role =?  
+                AND role =?
             """;
 
     private static final String UPATE_COMPANY_AND_ROLE = """
@@ -36,14 +36,14 @@ public class FilterUserRepositoryImpl implements FilterUserRepository{
                    SET company_id=?,
                    role=?
                    WHERE id=?
-                        
+
             """;
 
     private static final String UPATE_COMPANY_AND_ROLE_NAMED = """
                    UPDATE users
                    SET company_id=:companyId,
                    role=:role
-                   WHERE id=:id             
+                   WHERE id=:id
             """;
     private final EntityManager entityManager;
     private final JdbcTemplate jdbcTemplate;

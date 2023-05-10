@@ -2,6 +2,7 @@ package shadow.dev.spring.mapper;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 import shadow.dev.spring.datatabase.entity.Company;
 import shadow.dev.spring.datatabase.entity.User;
 import shadow.dev.spring.datatabase.repository.CompanyRepository;
@@ -35,6 +36,10 @@ public class UserCreateEditMapper implements Mapper<UserCreateEditDto, User> {
         user.setBirthDate(object.getBirthDate());
         user.setRole(object.getRole());
         user.setCompany(getCompany(object.getCompanyId()));
+
+        Optional.ofNullable(object.getImage())
+                .filter(MultipartFile::isEmpty)
+                .ifPresent(image -> user.setImage(image.getOriginalFilename()));
     }
 
     public Company getCompany(Long companyId) {
