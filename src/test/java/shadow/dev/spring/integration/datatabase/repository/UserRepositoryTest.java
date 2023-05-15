@@ -28,7 +28,7 @@ import static org.springframework.test.util.AssertionErrors.assertTrue;
 
 //@IT
 @RequiredArgsConstructor
-@Transactional
+//@Transactional
 class UserRepositoryTest  extends IntegrationTestBase {
 
     private final UserRepository userRepository;

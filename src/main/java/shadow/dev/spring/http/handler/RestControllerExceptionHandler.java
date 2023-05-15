@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 @RestControllerAdvice(basePackages = "shadow.dev.spring.http.rest")
 public class RestControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler({Exception.class})
-    public String handleExceptions(Exception exception,
-                                   HttpServletRequest request){
-        log.error("Failed to return response",exception);
-        return "error/error500";
-    }
+//    @ExceptionHandler({Exception.class})
+//    public String handleExceptions(Exception exception,
+//                                   HttpServletRequest request){
+//        log.error("Failed to return response",exception);
+//        return "error/error500";
+//    }
 }

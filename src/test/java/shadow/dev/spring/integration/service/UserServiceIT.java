@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import shadow.dev.spring.annotation.IT;
 import shadow.dev.spring.datatabase.entity.Role;
@@ -54,11 +55,13 @@ public class UserServiceIT  extends IntegrationTestBase {
     void create() {
         var userDto = new UserCreateEditDto(
                 "test@gmail.com",
+                "test",
                 LocalDate.now(),
                 "test",
                 "test",
                 Role.ADMIN,
-                COMPANY_1
+                COMPANY_1,
+               new MockMultipartFile("test", new byte[0])
         );
         var actualResult = userService.create(userDto);
         assertThat(actualResult.getUserName()).isEqualTo(userDto.getUserName());
@@ -71,11 +74,13 @@ public class UserServiceIT  extends IntegrationTestBase {
     void update() {
         var userDto = new UserCreateEditDto(
                 "test@gmail.com",
+                "test",
                 LocalDate.now(),
                 "test",
                 "test",
                 Role.ADMIN,
-                COMPANY_1
+                COMPANY_1,
+                new MockMultipartFile("test", new byte[0])
         );
 
         var actualResult = userService.update(USER_1, userDto);

@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 //@IT
 @RequiredArgsConstructor
 //@Commit
-    @Transactional
+//    @Transactional
 class CompanyRepositoryTest  extends IntegrationTestBase {
     private static final Long APPLE_ID = 4L;
 

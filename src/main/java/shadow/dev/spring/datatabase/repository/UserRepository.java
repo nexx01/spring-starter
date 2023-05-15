@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.*;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.history.RevisionRepository;
 import org.springframework.data.util.Streamable;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 import shadow.dev.spring.datatabase.entity.Role;
 import shadow.dev.spring.datatabase.entity.User;
@@ -78,4 +79,5 @@ public interface UserRepository extends
                     "FROM users WHERE company_id = :companyId")
     List<PersonalInfo2> findAllByCompanyId(Integer companyId);
 
+    Optional<User> findByUsername(String username);
 }

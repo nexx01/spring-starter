@@ -7,6 +7,8 @@ import org.springframework.test.context.jdbc.Sql;
 import org.testcontainers.containers.PostgreSQLContainer;
 import shadow.dev.spring.annotation.IT;
 
+import java.time.Duration;
+
 @IT
 @Sql({
         "classpath:sql/data.sql"
@@ -14,7 +16,10 @@ import shadow.dev.spring.annotation.IT;
 public abstract class IntegrationTestBase {
 
     private static final PostgreSQLContainer<?> container =
-            new PostgreSQLContainer<>("postgres:14.1");
+            new PostgreSQLContainer<>("postgres:14.1")
+                    .withUsername("test")
+                    .withPassword("test")
+                    .withStartupTimeout(Duration.ofSeconds(600));;
 
     @BeforeAll
     static void runContainer() {

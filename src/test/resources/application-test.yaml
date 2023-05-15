@@ -8,12 +8,19 @@ spring:
 #    url: jdbc:h2:mem:test
     username: test
     password: test
+    driver-class-name: org.postgresql.Driver
+
 #    driver-class-name: org.h2.Driver
   jpa:
     properties.hibernate:
       format_sql: true
       hbm2ddl:
         auto: validate
+    ## Liquibase
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
 #  driver: PostgresDriver
 #  url: postgres:5432
 #  hosts: localhost,127.0.0.1

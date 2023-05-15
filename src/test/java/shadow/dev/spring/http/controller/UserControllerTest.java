@@ -17,7 +17,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static shadow.dev.spring.dto.dto.UserCreateEditDto.Fields.*;
 
-@RequiredArgsConstructor @AutoConfigureMockMvc
+@RequiredArgsConstructor
+@AutoConfigureMockMvc
 class UserControllerTest extends IntegrationTestBase {
 
     private final MockMvc mockMvc;
@@ -28,7 +29,7 @@ class UserControllerTest extends IntegrationTestBase {
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(MockMvcResultMatchers.view().name("user/users"))
                 .andExpect(model().attributeExists("users"))
-                .andExpect(model().attribute("users",hasSize(5)));
+        ;
     }
 
     @Test

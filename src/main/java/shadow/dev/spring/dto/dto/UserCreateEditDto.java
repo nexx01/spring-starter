@@ -10,6 +10,7 @@ import shadow.dev.spring.validation.group.CreateAction;
 import shadow.dev.spring.validation.group.UpdateAction;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -19,8 +20,10 @@ import java.time.LocalDate;
 @UserInfo(groups = UpdateAction.class)
 public class UserCreateEditDto {
     @Email
+    String userName;
 
-     String userName;
+    @NotBlank(groups = CreateAction.class)
+    String rawPassword;
 
      @DateTimeFormat(pattern = "yyyy-MM-dd")
      LocalDate birthDate;

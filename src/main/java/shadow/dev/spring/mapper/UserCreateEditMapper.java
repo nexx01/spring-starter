@@ -1,6 +1,8 @@
 package shadow.dev.spring.mapper;
 
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import shadow.dev.spring.datatabase.entity.Company;
@@ -14,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserCreateEditMapper implements Mapper<UserCreateEditDto, User> {
     private final CompanyRepository companyRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     @Override
@@ -36,6 +39,11 @@ public class UserCreateEditMapper implements Mapper<UserCreateEditDto, User> {
         user.setBirthDate(object.getBirthDate());
         user.setRole(object.getRole());
         user.setCompany(getCompany(object.getCompanyId()));
+
+        Optional.ofNullable(object.getRawPassword())
+                .filter(StringUtils::isNotBlank)
+                .map(passwordEncoder::encode)
+                .ifPresent(user::setPassword);
 
         Optional.ofNullable(object.getImage())
                 .filter(MultipartFile::isEmpty)
