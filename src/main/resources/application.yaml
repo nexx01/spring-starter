@@ -47,6 +47,19 @@ spring:
         hbm2ddl:
           auto: none
     open-in-view: false
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: 438102212677-4ert1i43ca2815ecpbgkcphv139ifrg1.apps.googleusercontent.com
+            clientSecret: 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
+            redirectUri: http://localhost:8081/login/oauth2/code/google
+            scope: openid,email, profile
+
+
+  messages:
+    basename: messages
 
 logging:
   level:
@@ -60,5 +73,11 @@ logging:
 server:
   port: 8081
 
-
+springdoc:
+  swagger-ui:
+    oauth:
+      client-id: 438102212677-4ert1i43ca2815ecpbgkcphv139ifrg1.apps.googleusercontent.com
+      client-secret: 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
+      scopes: openid,email,profile
+    oauth2-redirect-url: http://localhost:8080/swagger-ui/oauth2-redirect.html
 

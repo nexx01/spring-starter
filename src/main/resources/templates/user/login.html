@@ -11,14 +11,18 @@
     <div style="color: red" th:if="${param.error}">
         Bad credential
     </div>
-    <label for="username"> Username:
-        <input id="username" type="text" name="username">
+    <label for="userName"> Username:
+        <input id="userName" type="text" name="userName">
     </label> <br>
     <label for="password"> Password:
         <input id="password" type="text" name="password">
     </label> <br>
     <button type="submit">Login</button>
 </form>
+<div>
+    <div>Login with:</div>
+    <a href="/oauth2/authorization/google">Google</a>
+</div>
 <form action="/users/registration">
     <button type="submit">Registration</button>
 </form>

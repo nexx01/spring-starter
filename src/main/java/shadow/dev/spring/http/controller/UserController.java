@@ -2,6 +2,7 @@ package shadow.dev.spring.http.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.ThreadContext;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
@@ -65,6 +66,7 @@ public class UserController {
 
         model.addAttribute("users", PageResponse.of(all));
         model.addAttribute("filter", filter);
+
         return "user/users";
     }
 
@@ -79,6 +81,7 @@ public class UserController {
                     model.addAttribute("user", user);
                     model.addAttribute("roles", Role.values());
                     model.addAttribute("companies", companyService.findAll());
+                    ThreadContext.put("userName", userDetails.getUsername());
 
                     return "user/user";
 
