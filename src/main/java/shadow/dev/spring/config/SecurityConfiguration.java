@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import static shadow.dev.spring.datatabase.entity.Role.ADMIN;
+
 @Configuration
 @EnableMethodSecurity
 @RequiredArgsConstructor
@@ -35,33 +37,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeHttpRequests(urlConfig->
-                urlConfig
-                        .antMatchers("/login","/users/registration",
-                                "/v3/api-docs/**","/swagger-ui/**").permitAll()
-                        .antMatchers("/users/{\\d+}/delete").hasAuthority(Role.ADMIN.getAuthority())
-                        .antMatchers("/admin/**").hasAuthority(Role.ADMIN.getAuthority())
-                        .anyRequest().authenticated());
-        http.formLogin(login ->
-                login.loginPage("/login")
+        http
+//                .csrf().disable()
+                .authorizeHttpRequests(urlConfig -> urlConfig
+                        .antMatchers("/login", "/users/registration", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                        .antMatchers("/users/{\\d+}/delete").hasAuthority(ADMIN.getAuthority())
+                        .antMatchers("/admin/**").hasAuthority(ADMIN.getAuthority())
+                        .anyRequest().authenticated()
+                )
+//                .httpBasic(Customizer.withDefaults());
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
+                        .deleteCookies("JSESSIONID"))
+                .formLogin(login -> login
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/users"))
+                .oauth2Login(config -> config
+                        .loginPage("/login")
                         .defaultSuccessUrl("/users")
-                        .permitAll());
-//        http.httpBasic(Customizer.withDefaults());
-        http.logout(logout -> {
-            logout
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login")
-                    .deleteCookies("JSESSIONID");
-        });
-//        http.csrf().disable();
-//        http.oauth2Login();
-        http.oauth2Login(config -> config
-                .loginPage("/login")
-                .defaultSuccessUrl("/users")
-                .userInfoEndpoint(userInfo->userInfo.oidcUserService(oidUserService())))
-                ;
-
+                        .userInfoEndpoint(userInfo -> userInfo.oidcUserService(oidUserService()))
+                );
     }
 
     private OAuth2UserService<OidcUserRequest, OidcUser> oidUserService() {
