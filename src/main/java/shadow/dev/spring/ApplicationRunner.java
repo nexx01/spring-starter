@@ -15,8 +15,14 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class ApplicationRunner {
 
     public static void main(String[] args) {
-        var context = SpringApplication.run(ApplicationRunner.class);
-        System.out.println(context.getBean("pool1"));
+        try {
+            var context = SpringApplication.run(ApplicationRunner.class);
+            System.out.println(context.getBean("pool1"));
+
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+            throw throwable;
+        }
     }
 
 }

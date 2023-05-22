@@ -1,11 +1,10 @@
-package shadow.dev.spring.aop;
+package com.aadev.logging.aop;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
 public class CommonPoincut {
     /*
      * @whitin - check annotation on the class level
@@ -17,7 +16,7 @@ public class CommonPoincut {
     /*
      * whithin - check class type name
      */
-    @Pointcut("within(shadow.dev.spring.service.*Service)")
+    @Pointcut("within(*.dev.spring.service.service.*Service)")
     public void isServiceLayer() {
     }
 

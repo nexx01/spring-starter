@@ -1,4 +1,4 @@
-package shadow.dev.spring.aop;
+package com.aadev.logging.aop;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -9,57 +9,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Aspect
-@Component
 @Slf4j
-@Order(1)
 public class FirstAspect {
 
-    /*
-     * this - check AOP  proxy class type
-     * target - check target object class type
-     */
-    @Pointcut("this(org.springframework.stereotype.Repository)")
-    public void isRepositoryLayer() {
-    }
-
-    /*
-     * @annotation  - check annotation on method level
-     */
-    @Pointcut("shadow.dev.spring.aop.CommonPoincut.isControllerLayer() && " +
-            "@annotation(org.springframework.web.bind.annotation.GetMapping)")
-    public void hasGetMapping() {
-    }
-
-    /*
-     * args -check method param type
-     * * - any paarm type
-     * .. - 0+ any param type
-     */
-    @Pointcut("shadow.dev.spring.aop.CommonPoincut.isControllerLayer() && args(org.springframework.ui.Model,..)")
-//    @Pointcut("args(org.springframework.ui.Model,*,*)")
-    public void hasModelParam() {
-    }
-
-    /*
-     * args -check annotation on the param type
-     * * - any paarm type
-     * .. - 0+ any param type
-     */
-    @Pointcut("shadow.dev.spring.aop.CommonPoincut.isControllerLayer() && @args(shadow.dev.spring.validation.UserInfo,..)")
-    public void hasUserInfoParamAnnotation() {
-    }
-
-    /*
-     * bean - check bean name
-     */
-    @Pointcut("bean(*Service)")
-    public void isServiceLayerBean() {
-    }
-
-    @Pointcut("execution(public * shadow.dev.spring.service.*Service.findById(*)) ")
+    @Pointcut("execution(public * *.dev.spring.service.*Service.findById(*)) ")
     public void anyFindByIdServiceMethod() {
     }
-
+//shadow.dev.spring.service.CompanyService
 //    @Before("anyFindByIdServiceMethod()")
 //    public void addLogging() {
 //        log.info("invoke findById method");
