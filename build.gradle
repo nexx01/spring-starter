@@ -28,6 +28,7 @@ configurations {
 
 dependencies {
     implementation project(":common-logging-starter")
+
     implementation('org.springframework.boot:spring-boot-starter')
     implementation 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-test:2.7.2'
@@ -44,6 +45,7 @@ dependencies {
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.3.RELEASE'
     implementation 'org.springframework.security:spring-security-oauth2-jose:5.6.5'
     implementation 'org.springframework.security:spring-security-oauth2-client:5.6.5'
+    implementation 'com.querydsl:querydsl-core:5.0.0'
 
     annotationProcessor "com.querydsl:querydsl-apt:${versions.querydsl}"
 
