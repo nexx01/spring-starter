@@ -2,6 +2,7 @@ package shadow.dev.spring.annotation;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import shadow.dev.spring.integration.TestApplicationRunner;
 
 import javax.transaction.Transactional;
@@ -15,6 +16,7 @@ import java.lang.annotation.Target;
 @ActiveProfiles("test")
 @SpringBootTest(classes = TestApplicationRunner.class)
 @Transactional
+@EnableTransactionManagement
 public @interface IT {
 
 }

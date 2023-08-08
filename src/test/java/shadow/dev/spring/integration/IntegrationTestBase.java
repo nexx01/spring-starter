@@ -11,6 +11,7 @@ import shadow.dev.spring.annotation.IT;
 import java.time.Duration;
 
 @IT
+
 @Sql({
         "classpath:sql/data.sql"
 })
