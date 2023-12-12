@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS company
     id BIGINT PRIMARY KEY,
     name VARCHAR(64) NOT NULL UNIQUE
 );
-create sequence company_id_seq
+create sequence  IF NOT EXISTS company_id_seq
     start 1
     increment 1
     NO MAXVALUE

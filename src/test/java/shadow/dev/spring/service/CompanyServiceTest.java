@@ -39,7 +39,7 @@ class CompanyServiceTest {
 
     @Test
     void findById() {
-        Mockito.doReturn(Optional.of(new Company(COMPANY_ID,null, Collections.emptyMap())))
+        Mockito.doReturn(Optional.of(new Company(COMPANY_ID,null,null, Collections.emptyMap())))
                 .when(companyRepository).findById(COMPANY_ID);
 
         var actualResult = companyService.findById(COMPANY_ID);

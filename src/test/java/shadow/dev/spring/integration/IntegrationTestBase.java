@@ -20,8 +20,8 @@ public abstract class IntegrationTestBase {
 
     private static final PostgreSQLContainer<?> container =
             new PostgreSQLContainer<>("postgres:14.1")
-                    .withUsername("test")
-                    .withPassword("test")
+                    .withUsername("postgres")
+                    .withPassword("postgres")
                     .withStartupTimeout(Duration.ofSeconds(600));;
 
     @BeforeAll

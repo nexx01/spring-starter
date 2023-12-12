@@ -26,7 +26,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static shadow.dev.spring.datatabase.entity.QUser.user;
 
 
 @Service
@@ -45,9 +44,9 @@ public class UserService implements UserDetailsService {
 //    @PostFilter("@companyService.findById(filterObject.company.id().isPresent())")
     public Page<UserReadDto> findAll(UserFilter filter, Pageable pageable) {
         var predicate = QPredicates.builder()
-                .add(filter.firsName(), user.firstName::containsIgnoreCase)
-                .add(filter.lastName(), user.lastName::containsIgnoreCase)
-                .add(filter.birthDate(), user.birthDate::before)
+//                .add(filter.firsName(), user.firstName::containsIgnoreCase)
+//                .add(filter.lastName(), user.lastName::containsIgnoreCase)
+//                .add(filter.birthDate(), user.birthDate::before)
                 .build();
 
         return userRepository.findAll(predicate, pageable)

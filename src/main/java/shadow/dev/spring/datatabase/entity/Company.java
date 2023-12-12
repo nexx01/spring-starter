@@ -45,6 +45,23 @@ public class Company implements BaseEntity<Long>{
     @Column(unique = true,nullable = false)
     private String name;
 
+    private String publicName;
+    private Boolean isWorldFamous;
+
+    public Company(Long id, String name, String publicName, Boolean isWorldFamous) {
+        this.id = id;
+        this.name = name;
+        this.publicName = publicName;
+        this.isWorldFamous = isWorldFamous;
+    }
+
+    public Company(Long id, String name, String publicName, Map<String, String> locales) {
+        this.id = id;
+        this.name = name;
+        this.publicName = publicName;
+        this.locales = locales;
+    }
+
     @ElementCollection
     @CollectionTable(name = "company_locales", joinColumns = @JoinColumn(name = "company_id"))
     @MapKeyColumn(name = "lang")

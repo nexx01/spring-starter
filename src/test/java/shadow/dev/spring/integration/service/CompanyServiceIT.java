@@ -22,6 +22,7 @@ import shadow.dev.spring.config.DatabaseProperties1;
 import shadow.dev.spring.config.DatabaseProperties2;
 import shadow.dev.spring.datatabase.entity.Company;
 import shadow.dev.spring.dto.dto.CompanyReadDto;
+import shadow.dev.spring.integration.IntegrationTestBase;
 import shadow.dev.spring.listeners.entity.EntityEvent;
 import shadow.dev.spring.service.CompanyService;
 
@@ -33,10 +34,10 @@ import java.util.Optional;
 //@SpringBootTest
 //@ActiveProfiles("test")
 
-@IT
+//@IT
 @RequiredArgsConstructor
 //@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
-public class CompanyServiceIT {
+public class CompanyServiceIT extends IntegrationTestBase {
 
     final CompanyService companyService;
 
